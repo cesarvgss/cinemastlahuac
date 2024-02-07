@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="esp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/dashboard.css" media="all" />
+    <link rel="icon" type="image/x-icon" href="../../img/icon.ico" />
+    <title>Administrar Películas</title>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+</head>
+
+<body>
+    <main>
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                        <img src="/img/logo.png" alt="Sitio Oficial" width="75px"></img>
+                    </li>
+                    <li>Bienvenido Administrador</li>
+                </ul>
+            </nav>
+        </header>
+        <aside>
+            <ul>
+                <li><a href="/admin/funcion/admon-funcion.html">FUNCIONES</a></li>
+                <li><a href="/admin/pelicula/admon-pelicula.html">PELÍCULAS</a></li>
+                <li><a href="/admin/sala/admon-sala.html">SALAS</a></li>
+                <li><a href="/admin/asiento/admon-asiento.html">ASIENTOS</a></li>
+                <li><a href="/admin/horario/admon-horario.html">HORARIOS</a></li>
+                <li><a href="/admin/usuario/admon-usuario.html">USUARIOS</a></li>
+                <li><a href="/admin/boleto/admon-boleto.html">BOLETOS</a></li>
+                <li><a href="/admin/rol/admon-rol.html">ROLES</a></li>
+                <li><a href="/index.html" id="cerrarSesion">CERRAR SESIÓN</a></li>
+            </ul>
+        </aside>
+        <section class="content">
+            <div class="search">
+                <h2 class="title">PELÍCULAS</h2>
+            </div>
+            <form id="add-form">
+                <div class="user-row">
+                    <!-- LABEL E INPUT PARA IMAGEN-->
+                    <div class="column">
+                        <input type="file" id="image-file">
+                        
+                        <img id="image-preview" class="image-box" src="" alt="Preview Image">
+                        <span id="image-name"></span>
+                      
+                        <button id="upload-button" class="btn-upload">Upload</button>
+                    </div>
+                    
+                    <div class="column">
+                        <h2 style="text-align: center; padding-bottom: 1em;">NUEVO / EDITAR</h2>
+                        <label for="idPelicula">ID de Película:</label>
+                        <input type="text" id="idPelicula" name="idPelicula" required>
+
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+
+                        <label for="genero">Género:</label>
+                        <input type="text" id="genero" name="genero" required>
+
+                        <label for="clasificacion">Clasificación:</label>
+                        <input type="text" id="clasificacion" name="clasificacion" required>
+
+                        <label for="director">Director:</label>
+                        <input type="text" id="director" name="director" required>
+
+                        <label for="reparto">Reparto:</label>
+                        <input type="text" id="reparto" name="reparto" required>
+
+                        <label for="sinopsis">Sinopsis:</label>
+                        <input type="text" id="sinopsis" name="sinopsis" required>
+
+                        <label for="urlTrailer">URL de Trailer:</label>
+                        <input type="text" id="urlTrailer" name="urlTrailer" required>
+
+                        <label for="duracion">Duración:</label>
+                        <input type="text" id="duracion" name="duracion" required>
+
+                        <label for="esEstreno">Estreno:</label>
+                        <input type="checkbox" id="esEstreno" name="esEstreno" required>
+
+                        <label for="activo">Activo:</label>
+                        <input type="checkbox" id="activo" name="activo" required>
+
+                        <hr class="form-divider">
+                        <div id="buttons">
+                            <input id="btn-save" type="submit" value="Registrar">
+                            <input id="btn-clean" type="submit" value="Limpiar" class="btn-clean">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="person-info">
+                            <div class="row">
+                                <div class="col">ID Película</div>
+                                <div class="col">Nombre</div>
+                                <div class="col">Duración</div>
+                                <div class="col">Opciones</div>
+                            </div>
+                            <div id="list-container"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </section>
+    </main>
+    <script type="module" src="./pelicula.js"></script>
+</body>
+
+</html>

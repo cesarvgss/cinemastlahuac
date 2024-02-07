@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/asientos.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/design.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/ModalQR.css" media="all" />
+
+    <link rel="icon" type="image/x-icon" href="img/icon.ico" />
+    <title>Cinemas Tláhuac | Cartelera</title>
+
+    <link rel="stylesheet" type="text/css" href="css/dashboard.css"/>
+
+    <!--COMPONENTES-->
+    <script type="module" src="/cmp/navbar.js"></script>
+    <script type="module" src="/cmp/session.js"></script>
+    <script type="module" src="/cmp/footer.js"></script>
+
+    <!--FIREBASE-->
+    <script type="module" src="js/init.js"></script>
+
+    <!--DEPENDENCIAS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!--QR-->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" 
+    integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+
+<body style="background-color: #242333;">
+
+     <nav class="navbar navbar-expand-lg navbar-light my-nav-bg">
+                <!-- Container wrapper -->
+                <div class="container-fluid">
+                    <!-- Toggle button -->
+       
+        
+                    <!-- Collapsible wrapper -->
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Navbar brand -->
+                        <a class="navbar-brand mt-2 mt-lg-0" href="/index.html">
+                            <img src="./img/logo.png" height="50" alt="Cinemas Tláhuac" loading="lazy" />
+                        </a>
+                        <!-- Left links -->
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item logged-out">
+                                <a class="nav-link" href="/cartelera.html">CARTELERA</a>
+                            </li>
+                            <li class="nav-item logged-out">
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">INICIAR SESIÓN</a>
+                            </li>
+                            <li class="nav-item logged-out">
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#signupModal">REGISTRARSE</a>
+                            </li>
+                        </ul>
+                        <!-- Left links -->
+                    </div>
+                    <!-- Collapsible wrapper -->
+                </div>
+                <!-- Container wrapper -->
+            </nav>
+
+    <!--ASIENTOS-->
+    <main>
+    <div class="booking-container">
+                
+        <div class="movie-container">
+            <select id="movie">
+            <option value="50" id="movieDesc"></option>
+            </select>
+        </div>
+    
+        <ul class="showcase">
+            <li>
+            <div class="seat1"></div>
+            <small>Available</small>
+            </li>
+            <li>
+            <div class="seat1 selected"></div>
+            <small>Selected</small>
+            </li>
+            <li>
+            <div class="seat1 sold"></div>
+            <small>Sold</small>
+            </li>
+        </ul>
+        <div class="seats">
+            <div class="screen"></div>
+    
+            <div class="row">
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            </div>
+    
+            <div class="row">
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            </div>
+
+            <div class="row">
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            </div>
+            <div class="row">
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            <div class="seat disponible"></div>
+            </div>
+        </div>
+    
+        <p class="text">
+            Has selecionado <span id="count">0</span> asientos por el precio de MX: <span
+            id="total"
+            >0</span
+            >
+        </p>
+        <button class="btn" id="factorizar">Facturizar</button>
+        <form class="add-form">
+            <p class="text" id="fechaFuncion" hidden></p>
+            <p class="text" id="asientosFuncion" hidden></p>
+            <p class="text" id="totalFuncion" hidden></p>
+        </form>
+    </div>
+    
+    <div class="boleto-container">
+        <div class="movie-card">
+            
+            <div class="movie-header">
+                <div class="header-icon-container">
+                    <img src="img/MovieTicket1.png" alt="card-image" class="material-icons header-icon">
+                </div>
+            </div><!--movie-header-->
+
+            <div class="movie-content">
+
+                <div class="movie-content-header">
+                    <label class="movie-title" id="movieName" style="text-align: center; max-width: 200px;">Nombre</label>
+                </div>
+
+                <div class="movie-info">
+                    <div class="info-section">
+                        <label>Horario</label>
+                        <span id="horarioFuncion"></span>
+                    </div><!--time-->
+                    <div class="info-section">
+                        <label>Sala</label>
+                        <span id="salaFuncion"></span>
+                    </div><!--sala-->
+                    <div class="info-section">
+                        <label>Asientos</label>
+                        <span id="asientoSelecionado"></span>
+                    </div><!--Asientos-->
+
+                </div>
+                
+            </div><!--movie-content-->
+        </div><!--movie-card-->
+    </div>
+    </main>
+    <div class="contenedor">
+        <div id="modal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2>CODIGO QR</h2>
+              <p>Se le envio a su correo los datos del boleto. Tiene 2 horas para efectuar el pago.</p>
+              <div id="contenedorQR" class="contenedorQR">
+
+              </div> 
+              <button id="confirmBtn">Confirm</button>
+            </div>
+          </div> 
+    </div>   
+
+    <user-footer></user-footer>
+    <script defer type="module" src="js/asientos.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+
+</body>
+
+</html>

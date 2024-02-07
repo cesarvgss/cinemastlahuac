@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="esp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/dashboard.css" media="all" />
+    <link rel="icon" type="image/x-icon" href="../../img/icon.ico" />
+    <title>Administrar Boletos</title>
+
+</head>
+
+<body>
+    <main>
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                        <img src="/img/logo.png" alt="Sitio Oficial" width="75px"></img>
+                    </li>
+                    <li>Bienvenido Administrador</li>
+                </ul>
+            </nav>
+        </header>
+        <aside>
+            <ul>
+                <li><a href="/admin/funcion/admon-funcion.html">FUNCIONES</a></li>
+                <li><a href="/admin/pelicula/admon-pelicula.html">PELÍCULAS</a></li>
+                <li><a href="/admin/sala/admon-sala.html">SALAS</a></li>
+                <li><a href="/admin/asiento/admon-asiento.html">ASIENTOS</a></li>
+                <li><a href="/admin/horario/admon-horario.html">HORARIOS</a></li>
+                <li><a href="/admin/usuario/admon-usuario.html">USUARIOS</a></li>
+                <li><a href="/admin/boleto/admon-boleto.html">BOLETOS</a></li>
+                <li><a href="/admin/rol/admon-rol.html">ROLES</a></li>
+                <li><a href="/index.html" id="cerrarSesion">CERRAR SESIÓN</a></li>
+
+            </ul>
+        </aside>
+        <section class="content">
+            <div class="search">
+                <h2 class="title">BOLETOS</h2>
+            </div>
+            <form id="add-form">
+                <div class="user-row">
+                    <div class="column">
+                        <h2 style="text-align: center; padding-bottom: 1em;">NUEVO / EDITAR</h2>
+                        <label for="idBoleto">Cantidad Boleto:</label>
+                        <input type="number" id="idBoleto" name="idBoleto" required>
+
+                        <label for="descripcion">Folio:</label>
+                        <input type="text" id="descripcion" name="descripcion" required>
+
+                        <label for="idAsiento">Asientos:</label>
+                        <input type="text" id="idAsiento" name="idAsiento" required>
+
+                        <label for="funcionSala">Sala:</label>
+                        <input type="text" id="funcionSala" name="funcionSala" required>
+
+                        <label for="funcionFecha">Fecha de Compra:</label>
+                        <input type="date" id="funcionFecha" name="funcionFecha" pattern="\d{2}-\d{2}-\d{4}" required>
+                        </select>
+
+                        <label for="fk_idFuncion">Función:</label>
+                        <select id="fk_idFuncion" name="fk_idFuncion" required>
+                        </select>
+
+                        <label for="funcionHorario">Horario:</label>
+                        <select id="funcionHorario" name="funcionHorario" required>
+                        </select>
+
+                        <label for="pagado">Estado:</label>
+                        <select id="pagado" name="pagado" required>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+
+                        <label for="precio">Precio:</label>
+                        <input type="number" id="precio" name="precio" value="50" required>
+                        </select>
+
+                        <hr class="form-divider">
+                        <div id="buttons">
+                            <input id="btn-save" type="submit" value="Registrar">
+                            <input id="btn-clean" type="submit" value="Limpiar" class="btn-clean">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="person-info">
+                            <div class="row">
+                                <div class="col">Titulo</div>
+                                <div class="col">Folio</div>
+                                <div class="col">Precio</div>
+                                <div class="col">Opciones</div>
+                            </div>
+                            <div id="list-container"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </section>
+    </main>
+    <script type="module" src="./boleto.js"></script>
+</body>
+
+</html>
